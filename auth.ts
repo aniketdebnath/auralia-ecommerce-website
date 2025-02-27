@@ -4,6 +4,9 @@ import { prisma } from "@/db/prisma";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { compareSync } from "bcrypt-ts-edge";
 import type { NextAuthConfig } from "next-auth";
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
+
 export const config = {
   pages: {
     signIn: "/sign-in",
@@ -52,13 +55,51 @@ export const config = {
   callbacks: {
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
     async session({ session, user, trigger, token }: any) {
-      //Set the user ID from the token
+      //Set the user ID, role and name from the token
       session.user.id = token.sub;
+      session.user.role = token.role;
+      session.user.name = token.name;
       //If there is an update, set the user name
       if (trigger === "update") {
         session.user.name = user.name;
       }
       return session;
+    },
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async jwt({ token, user, trigger, session }: any) {
+      if (user) {
+        token.role = user.role;
+
+        if (user.name === "NO_NAME") {
+          token.name = user.email!.split("@")[0];
+          await prisma.user.update({
+            where: { id: user.id },
+            data: { name: token.name },
+          });
+        }
+      }
+      return token;
+    },
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    authorized({ request, auth }: any) {
+      //check for session cart cookie
+      if (!request.cookies.get("sessionCartId")) {
+        //Generate new session cart cookie
+        const sessionCartId = crypto.randomUUID();
+        //Clone the request headers
+        const newRequestHeaders = new Headers(request.headers);
+        //Create new response and add the new headers
+        const response = NextResponse.next({
+          request: {
+            headers: newRequestHeaders,
+          },
+        });
+        //Set the session cart cookie
+        response.cookies.set("sessionCartId", sessionCartId);
+        return response;
+      } else {
+        return true;
+      }
     },
   },
 } satisfies NextAuthConfig;
