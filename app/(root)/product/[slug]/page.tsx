@@ -6,11 +6,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import ProductPrice from "@/components/shared/product/product-price";
 import ProductImages from "@/components/shared/product/product-images";
 import AddToCart from "@/components/shared/product/add-to-cart";
+import { getMyCart } from "@/lib/actions/cart.actions";
 const ProductDetailsPage = async (props: {
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await props.params;
   const product = await getProductBySlug(slug);
+  const cart = await getMyCart();
   if (!product) notFound();
   return (
     <section>
@@ -64,6 +66,7 @@ const ProductDetailsPage = async (props: {
               {product.stock > 0 && (
                 <div className="flex-center mt-4">
                   <AddToCart
+                    cart={cart}
                     item={{
                       productId: product.id,
                       name: product.name,
