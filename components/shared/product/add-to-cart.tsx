@@ -9,7 +9,6 @@ import { addItemToCart, removeItemFromCart } from "@/lib/actions/cart.actions";
 import { Minus } from "lucide-react";
 import { useTransition } from "react";
 import { Loader } from "lucide-react";
-import { start } from "repl";
 
 const AddToCart = ({ cart, item }: { cart?: Cart; item: CartItem }) => {
   const [isPending, startTransition] = useTransition();
