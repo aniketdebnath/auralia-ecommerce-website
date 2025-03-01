@@ -10,7 +10,7 @@ import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { hashSync } from "bcrypt-ts-edge";
 import { prisma } from "@/db/prisma";
 import { formatError } from "../utils";
-import { getMyCart } from "./cart.actions";
+//import { getMyCart } from "./cart.actions";
 import { ShippingAddress } from "@/types";
 import { z } from "zod";
 
