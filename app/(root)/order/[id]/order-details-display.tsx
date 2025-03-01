@@ -15,7 +15,6 @@ import Image from "next/image";
 import Link from "next/link";
 const OrderDetailsDisplay = ({ order }: { order: Order }) => {
   const {
-    id,
     shippingAddress,
     orderitems,
     paymentMethod,
@@ -24,7 +23,6 @@ const OrderDetailsDisplay = ({ order }: { order: Order }) => {
     taxPrice,
     totalPrice,
     isPaid,
-    isDelivered,
     paidAt,
     deliveredAt,
   } = order;
