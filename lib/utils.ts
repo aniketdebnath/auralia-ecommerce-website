@@ -66,7 +66,12 @@ export function formatCurrency(value: number | string | null) {
   } else return NaN;
 }
 
-//Shroten the UUID
+//Format number
+const NUMBER_FORMATTER = new Intl.NumberFormat("en-AU");
+export function formatNumber(number: number) {
+  return NUMBER_FORMATTER.format(number);
+}
+//Shorten the UUID
 export function formatId(id: string) {
   return `..${id.substring(id.length - 6)}`;
 }
