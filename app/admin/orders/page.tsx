@@ -21,21 +21,41 @@ export const metadata: Metadata = {
 };
 
 const AdminOrdersPage = async (props: {
-  searchParams: Promise<{ page: string }>;
+  searchParams: Promise<{ page: string; query: string }>;
 }) => {
   await requireAdmin();
-  const { page = 1 } = await props.searchParams;
-  const orders = await getAllOrders({ page: Number(page) });
+  const { page = 1, query: searchText } = await props.searchParams;
+  const orders = await getAllOrders({ page: Number(page), query: searchText });
 
   return (
     <div className="space-y-2">
-      <h1 className="h2-bold">Orders</h1>
+      <div className="flex items-center gap-3">
+        <h1 className="h2-bold">Orders</h1>
+        {searchText && (
+          <div>
+            Filtered by{" "}
+            <i>
+              &quot;{searchText}&quot;{}
+            </i>
+            <Link
+              href="/admin/orders"
+              className="ml-2">
+              <Button
+                variant="secondary"
+                size="sm">
+                Remove Filter
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div>
       <div className="overflow-x-auto"></div>
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead>ID</TableHead>
             <TableHead>Date</TableHead>
+            <TableHead>Customer</TableHead>
             <TableHead>Total</TableHead>
             <TableHead>Paid</TableHead>
             <TableHead>Delivered</TableHead>
@@ -47,6 +67,7 @@ const AdminOrdersPage = async (props: {
             <TableRow key={order.id}>
               <TableCell>{formatId(order.id)}</TableCell>
               <TableCell>{formatDateTime(order.createdAt).dateTime}</TableCell>
+              <TableCell>{order.user.name}</TableCell>
               <TableCell>{formatCurrency(order.totalPrice)}</TableCell>
               <TableCell>
                 {order.isPaid && order.paidAt
