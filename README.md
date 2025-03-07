@@ -1,5 +1,7 @@
 # Auralia - Full Stack Next.js Ecommerce Website
 
+[Visit Live Website](https://auralia.aniketdebnath.com/).
+
 ![Next.js Ecommerce](https://l7ewz3hqkc.ufs.sh/f/LFPunsIWlVM1XSov3XH3kdQXKoJ0FE2RDab5Lycfm6hwlHp1)
 
 ## 🚀 Tech Stack & Libraries Used
@@ -126,10 +128,6 @@
 This project is deployed on **Vercel** for a seamless serverless experience.
 
 ### **📌 Deploy to Vercel**
-
-```sh
-vercel deploy
-```
 
 ---
 
