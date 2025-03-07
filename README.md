@@ -1,6 +1,6 @@
 # Next.js Ecommerce 2025 - Shopping Platform From Scratch
 
-![Next.js Ecommerce](https://l7ewz3hqkc.ufs.sh/f/LFPunsIWlVM14FGSHZgfeZQwYCLzMKq5dnuTHy0bhXlBcF7V)
+![Next.js Ecommerce](https://l7ewz3hqkc.ufs.sh/f/LFPunsIWlVM1XSov3XH3kdQXKoJ0FE2RDab5Lycfm6hwlHp1)
 
 ## 🚀 Tech Stack & Libraries Used
 
@@ -106,56 +106,6 @@
 
 ---
 
-## 🛠️ Project Setup & Configuration
-
-### **📌 Clone the Repository**
-
-```sh
-git clone https://github.com/yourusername/nextjs-ecommerce.git
-cd nextjs-ecommerce
-```
-
-### **📌 Install Dependencies**
-
-```sh
-npm install
-# or
-yarn install
-```
-
-### **📌 Configure Environment Variables**
-
-Create a `.env` file and configure the required environment variables.
-
-### **📌 Database Setup**
-
-```sh
-npx prisma migrate dev --name init
-npx prisma db seed
-```
-
-### **📌 Run the Development Server**
-
-```sh
-npm run dev
-# or
-yarn dev
-```
-
-### **📌 Build for Production**
-
-```sh
-npm run build && npm start
-```
-
-### **📌 Run Tests**
-
-```sh
-npm run test
-```
-
----
-
 ## 📜 Package.json Scripts
 
 | Script        | Description                               |
@@ -197,7 +147,7 @@ Contributions are welcome! Feel free to fork the repo, create a feature branch, 
 
 ## 📬 Contact
 
-For inquiries, reach out via [your-email@example.com](mailto:rkstaraniket34@gmail.com) or connect on [LinkedIn](https://linkedin.com/in/aniketdebnath/).
+For inquiries, reach out via [rkstaraniket34@gmail.com](mailto:rkstaraniket34@gmail.com) or connect on [LinkedIn](https://linkedin.com/in/aniketdebnath/).
 
 ---
 
