@@ -18,6 +18,7 @@ import {
   PayPalScriptProvider,
   usePayPalScriptReducer,
 } from "@paypal/react-paypal-js";
+import StripePayment from "./stripe_payment";
 import {
   createPaypalOrder,
   approvePaypalOrder,
@@ -31,10 +32,12 @@ const OrderDetailsDisplay = ({
   order,
   paypalClientId,
   isAdmin,
+  stripeClientSecret,
 }: {
   order: Order;
   paypalClientId: string;
   isAdmin: boolean;
+  stripeClientSecret: string | null;
 }) => {
   const {
     shippingAddress,
@@ -119,6 +122,7 @@ const OrderDetailsDisplay = ({
       </Button>
     );
   };
+
   return (
     <>
       <h1 className="py-4 text-2xl">Order {formatId(order.id)}</h1>
@@ -230,6 +234,14 @@ const OrderDetailsDisplay = ({
                     />
                   </PayPalScriptProvider>
                 </div>
+              )}
+              {/* Stripe Payment */}
+              {!isPaid && paymentMethod === "Stripe" && stripeClientSecret && (
+                <StripePayment
+                  priceInCents={Number(order.totalPrice) * 100}
+                  orderId={order.id}
+                  clientSecret={stripeClientSecret}
+                />
               )}
               {/* Cash on Delivery */}
               {isAdmin && !isPaid && paymentMethod === "CashOnDelivery" && (
