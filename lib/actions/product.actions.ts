@@ -11,7 +11,7 @@ import { Prisma } from "@prisma/client";
 export async function getLatestProducts() {
   const data = await prisma.product.findMany({
     take: LATEST_PRODUCTS_LIMIT,
-    orderBy: { createdAt: "desc" },
+    orderBy: { numReviews: "desc" },
   });
   return convertToPlainObject(data);
 }
@@ -43,7 +43,6 @@ export async function getAllCategories() {
 export async function getFeaturedProducts() {
   const data = await prisma.product.findMany({
     where: { isFeatured: true },
-    orderBy: { createdAt: "desc" },
     take: 4,
   });
 
@@ -110,10 +109,10 @@ export async function getAllProducts({
       sort === "Lowest"
         ? { price: "asc" }
         : sort === "Highest"
-        ? { price: "desc" }
-        : sort === "Top-Rated"
-        ? { rating: "desc" }
-        : { createdAt: "desc" },
+          ? { price: "desc" }
+          : sort === "Top-Rated"
+            ? { rating: "desc" }
+            : { createdAt: "desc" },
     skip: (page - 1) * limit,
     take: limit,
   });

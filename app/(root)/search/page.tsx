@@ -5,6 +5,7 @@ import {
   getAllCategories,
 } from "@/lib/actions/product.actions";
 import Link from "next/link";
+import Pagination from "@/components/shared/pagination";
 
 const prices = [
   {
@@ -233,6 +234,15 @@ const SearchPage = async (props: {
             ))
           )}
         </div>
+        {/* Pagination */}
+        {products.totalPages > 1 && (
+          <div className="flex justify-center mt-6">
+            <Pagination
+              page={Number(page) || 1}
+              totalPages={products.totalPages}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

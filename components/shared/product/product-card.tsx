@@ -8,15 +8,20 @@ const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader className="p-0 items-center">
-        <Link href={`/product/${product.slug}`}>
-          <Image
-            src={product.images[0]}
-            alt={product.name}
-            height={300}
-            width={300}
-            priority
-          />
-        </Link>
+        <div className="relative w-full aspect-[1/1] overflow-hidden">
+          <Link
+            href={`/product/${product.slug}`}
+            className="block w-full">
+            <Image
+              src={product.images[0]}
+              alt={product.name}
+              height={300}
+              width={300}
+              className="object-cover rounded-t-lg"
+              priority
+            />
+          </Link>
+        </div>
       </CardHeader>
       <CardContent className="p-4 grid gap-4">
         <div className="text-sm">{product.brand}</div>

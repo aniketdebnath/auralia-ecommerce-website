@@ -75,7 +75,6 @@ export function formatNumber(number: number) {
 export function formatId(id: string) {
   return `..${id.substring(id.length - 6)}`;
 }
-console.log(formatId("24a3a4f8-414d-4fb7-93c4-12d30ca3aeee"));
 
 //Format the data and time
 export const formatDateTime = (dateString: Date) => {
