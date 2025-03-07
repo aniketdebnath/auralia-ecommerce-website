@@ -1,4 +1,4 @@
-# Next.js Ecommerce 2025 - Shopping Platform From Scratch
+# Auralia - Full Stack Next.js Ecommerce Website
 
 ![Next.js Ecommerce](https://l7ewz3hqkc.ufs.sh/f/LFPunsIWlVM1XSov3XH3kdQXKoJ0FE2RDab5Lycfm6hwlHp1)
 
