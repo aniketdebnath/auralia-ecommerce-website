@@ -18,7 +18,7 @@ export default function AdminLayout({
               href="/"
               className="w-22">
               <Image
-                src="/images/logo.svg"
+                src="/images/logo.png"
                 alt={APP_NAME}
                 width={48}
                 height={48}
